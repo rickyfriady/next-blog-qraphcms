@@ -1,11 +1,11 @@
 import { Header } from "./";
 const Layout = ({ children }: any) => {
-  return (
-    <>
-      <Header />
-      {children}
-    </>
-  );
+    return (
+        <>
+            <Header />
+            {children}
+        </>
+    );
 };
 
 export default Layout;
