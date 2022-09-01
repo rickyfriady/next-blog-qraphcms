@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 import { getRecentPosts, getSimilarPosts } from "../services";
 
-const PostWidget = ({ categories, slug }) => {
+const PostWidget = ({ categories, slug }: any) => {
     const [relatedPosts, setRelatedPosts] = useState([]);
 
     useEffect(() => {

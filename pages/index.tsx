@@ -18,7 +18,7 @@ const Home: NextPage = ({ posts }: any) => {
                 </div>
                 <div className="col-span-1 lg:col-span-4">
                     <div className="lg:sticky relative top-8">
-                        <PostWidget />
+                        <PostWidget categories={undefined} slug={undefined} />
                         <Categories />
                     </div>
                 </div>

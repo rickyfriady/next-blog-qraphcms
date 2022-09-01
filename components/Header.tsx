@@ -1,12 +1,14 @@
-import { useContext } from "react";
 import Link from "next/link";
-
-const categories = [
-    { name: "React", slug: "react" },
-    { name: "Web Development", slug: "web-dev" },
-];
+import { useState, useEffect } from "react";
+import { getCategories } from "../services";
 
 const Header = () => {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        getCategories().then((newCategories) => setCategories(newCategories));
+    }, []);
+
     return (
         <div className="container mx-auto px-10 mb-8">
             <div className="border-b w-full inline-block border-blue-400 py-8">
@@ -18,7 +20,7 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className="hidden md:float-left md:contents">
-                    {categories.map((category) => (
+                    {categories.map((category: any) => (
                         <Link
                             key={category.slug}
                             href={`/category/${category.slug}`}
