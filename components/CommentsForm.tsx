@@ -18,12 +18,21 @@ const CommentsForm = ({ slug }: CommentsFormProps) => {
         const { value: comment } = CommentEl.current;
         const { value: name } = nameEl.current;
         const { value: email } = emailEl.current;
+        const { checked: storeData } = storeDatatEl.current;
 
         if (!comment || !name || !email) {
             setError(true);
             return;
         }
-        const commentObj = (name, email, comment, slug);
+        const commentObj = { name, email, comment, slug };
+
+        if (storeData) {
+            localStorage.setItem("name", name);
+            localStorage.setItem("email", name);
+        } else {
+            localStorage.removeItem("name", name);
+            localStorage.removeItem("email", name);
+        }
     };
 
     return (
