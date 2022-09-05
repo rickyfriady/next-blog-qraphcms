@@ -1,4 +1,7 @@
 import { useRef, useState, useEffect } from "react";
+
+import { submitComment } from "../services";
+
 interface CommentsFormProps {
     slug: any;
 }
@@ -11,6 +14,11 @@ const CommentsForm = ({ slug }: CommentsFormProps) => {
     const nameEl = useRef();
     const emailEl = useRef();
     const storeDatatEl = useRef();
+
+    useEffect(() => {
+        nameEl.current.value = window.localStorage.getItem("name");
+        emailEl.current.value = window.localStorage.getItem("email");
+    }, []);
 
     const handleCommentsSubmission = () => {
         setError(false);
@@ -27,18 +35,25 @@ const CommentsForm = ({ slug }: CommentsFormProps) => {
         const commentObj = { name, email, comment, slug };
 
         if (storeData) {
-            localStorage.setItem("name", name);
-            localStorage.setItem("email", name);
+            window.localStorage.setItem("name", name);
+            window.localStorage.setItem("email", emailEl);
         } else {
-            localStorage.removeItem("name", name);
-            localStorage.removeItem("email", name);
+            window.localStorage.removeItem("name");
+            window.localStorage.removeItem("email");
         }
+
+        submitComment(commentObj).then((res) => {
+            setShowSuccessMessage(true);
+            setTimeout(() => {
+                setShowSuccessMessage(false);
+            }, 3000);
+        });
     };
 
     return (
         <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
             <h3 className="text-xl mb-8 font-semibold border-b pb-4">
-                Comments
+                Leave a reply
             </h3>
             <div className="grid  grid-cols-1 gap-4 mb-4">
                 <textarea
