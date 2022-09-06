@@ -27,7 +27,20 @@ const Comments = ({ slug }: CommentsProps) => {
                         <div
                             key={comment.createdAt}
                             className="borde-b border-gray-100 mb-4 pb-4"
-                        ></div>
+                        >
+                            <p className="mb-4">
+                                <span className="font-semibold">
+                                    {comment.name}
+                                </span>{" "}
+                                on{" "}
+                                {moment(comment.createdAt).format(
+                                    "MMM DD, YYYY"
+                                )}
+                            </p>
+                            <p className="whitespace-pre-line text-gray-600 w-full">
+                                {parse(comment.comment)}
+                            </p>
+                        </div>
                     ))}
                 </div>
             )}
