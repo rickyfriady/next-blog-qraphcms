@@ -23,7 +23,7 @@ const Comments = ({ slug }: CommentsProps) => {
                         {""}
                         Comments
                     </h3>
-                    {comments.map(({ comment }: any) => (
+                    {comments.map((comment) => (
                         <div
                             key={comment.createdAt}
                             className="borde-b border-gray-100 mb-4 pb-4"
